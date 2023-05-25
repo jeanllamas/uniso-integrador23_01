@@ -1,0 +1,13 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=127.0.0.1:7777;Database=blazormovies;user=root;Password==cbmqweasd9j21"
+   // "DefaultConnection": "Server=191.8.164.157;Port=7777;Database=blazormovies;Uid=root;Pwd=Cbmjj98#$"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  }
+}

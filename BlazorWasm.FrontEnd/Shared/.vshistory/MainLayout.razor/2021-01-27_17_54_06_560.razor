@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    
+    <div class="sidebar">
+        <h1>Menu</h1>
+      <NavMenu />
+        <h3>fimMenu</h3>
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            <a href="http://blazor.net" target="_blank" class="ml-md-auto">About</a>
+        </div>
+        <div class="content px-4" style="margin-bottom: 20px">
+                @Body
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,28 @@
+﻿@page "/categoria/cadastro"
+@inject ICategoriaRepositorio categoriaRep
+@inject NavigationManager navigationManager
+
+
+<h3>CadastroCategoria</h3>
+
+<FormCategoria Categoria="categoria" OnValidSubmit="Create" />
+
+@code {
+    private Categoria categoria = new Categoria();
+
+    private async Task Create()
+    {
+        Console.WriteLine("Inicia Create Metodo: >> "+categoria.Nome);
+
+        try
+        {
+            await categoriaRep.CreateCategoria(categoria);
+            navigationManager.NavigateTo("categoria");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Error: " + ex.Message);
+        }
+        Console.WriteLine("Finaliza Create Metodo: >> " + categoria.Nome);
+    }
+}

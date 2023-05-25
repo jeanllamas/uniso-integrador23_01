@@ -1,0 +1,27 @@
+﻿@page "/categoria/editar/{CategoriaId:int}"
+
+<h3>Editar Categoria</h3>
+@if (categoria is not null)
+{
+    <FormCategoria Categoria="categoria" OnValidSubmit="Edit"/>
+}
+
+
+@code {
+    [Parameter] public int CategoriaId { get; set; }
+    private Categoria categoria;
+
+    protected override void OnInitialized()
+    {
+        categoria = new Categoria() { Id = CategoriaId, Nome = "Romance" };
+
+    }
+
+    private void Edit() {
+        Console.WriteLine("Editar Meodo");
+        Console.WriteLine($"Id= {categoria.Id}");
+        Console.WriteLine($"Nome= {categoria.Nome}");
+
+    }
+
+}

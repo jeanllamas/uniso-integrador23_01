@@ -1,0 +1,63 @@
+﻿@page "/categoria"
+@inject ICbmRepository BaseRepository
+
+<h3>IndexCategoria</h3>
+
+<div class="form-group">
+    <a class="btn btn-info" href="categoria/cadastro"> Nova Categoria</a>
+</div>
+
+
+<GenericList List="Categorias">
+    <TemplateListaCompleta>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Categorias)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-success" href="/genre/edit/@item.Id">Edit</a>
+                            <button class="btn btn-danger" @onclick="@(() => DeleteGenres(item.Id))">Delete</button>
+                        </td>
+                        <td>@item.Nome</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </TemplateListaCompleta>
+</GenericList>
+
+@code {
+
+    List<Categoria> Categorias = new List<Categoria>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var resp = await BaseRepository.Get<Categoria>();
+            Categorias.AddRange(resp);
+            // StateHasChanged();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Erro X: "+ex.Message);
+
+        }
+    }
+
+
+
+    private async Task DeleteGenres(int Id)
+    {
+        await BaseRepository.Delete<Categoria>(Id);
+        Categorias = await BaseRepository.Get<Categoria>();
+    }
+
+}

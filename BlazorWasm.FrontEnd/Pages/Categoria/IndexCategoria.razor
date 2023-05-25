@@ -1,0 +1,65 @@
+﻿@page "/categoria"
+@inject IRepository<Categoria> repositorio
+
+<h3>IndexCategoria</h3>
+
+<div class="form-group">
+    <a class="btn btn-info" href="categoria/cadastro"> Nova Categoria</a>
+</div>
+
+
+
+@if(Categorias is not null)
+{
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Categorias)
+                {
+                    <tr>
+                        <td>
+                      <a class="btn btn-success" href="/categoria/editar/@item.Id">Editar</a>
+                       <button class="btn btn-danger" @onclick="@(() => DeletarItem(item.Id))">Deletar</button>
+                        </td>
+                        <td>@item.Nome</td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+}
+else
+{
+       <h5>Carregando...</h5>
+        <img src="https://media.giphy.com/media/l0He4fJxPCbfqv7Xi/giphy.gif" />
+}
+
+
+@code {
+
+    List<Categoria> Categorias = new List<Categoria>();
+
+
+
+    //Metodo Executado quando a Pagina é carregada
+    protected override async Task OnInitializedAsync()
+    {
+            Categorias = await repositorio.Get();
+    }
+
+
+
+    private async Task DeletarItem(int Id)
+    {
+        await repositorio.Delete(Id);
+       
+        //Solicitando Nova Lista de Categorias para
+        //Atualizar a Tela
+         Categorias = await repositorio.Get();
+    }
+
+}

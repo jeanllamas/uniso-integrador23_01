@@ -1,0 +1,6 @@
+Add-Migration Initial 
+(gera arquivo de migração para visualizacao)VS (nuget -> instal entity tools para funcionar os comandos)
+ON VScode: dotnet ef migrations add initial
+
+Update Database (Aplica arquivo de migration gerado)
+ON VScode: dotnet ef database update

@@ -1,0 +1,40 @@
+﻿@page "/"
+
+@inject ILivroRepositorio repository
+
+
+
+<div>
+    <CbmTextItem placeholder="Livro" disabled="true" />
+
+    <LivroListaWithGeneric Livros="livros" />
+</div>
+
+<CbmTypeahead SearchMethod="Pesquisar" >
+    <ResultTemplate>
+        @context
+    </ResultTemplate>
+
+</CbmTypeahead>
+
+
+@code
+{
+    private List<Livro> livros;
+    protected async override Task OnInitializedAsync()
+    {
+
+        livros = await repository.Get();
+    }
+
+    private async Task<IEnumerable<string>> Pesquisar(string strBusca)
+    {
+        await Task.Delay(1000);
+        if (strBusca == "teste ")
+            return Enumerable.Empty<String>();
+        return new List<String> { "Felipe", "Luciano C." };
+    }
+
+
+
+}

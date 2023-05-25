@@ -1,0 +1,53 @@
+﻿<h3>FormProduto</h3>
+
+
+
+
+<EditForm Model="Produto" OnValidSubmit="OnValidSubmit">
+	<DataAnnotationsValidator />
+	<div class="form-group">
+		<label>Nome:</label>
+		<div>
+			<InputText class="form-control" @bind-Value="@Produto.Nome" />
+			<ValidationMessage For="(() =>Produto.Nome)" />
+		</div>
+		<label>Preço:</label>
+		<div>
+			<InputNumber class="form-control" @bind-Value="@Produto.Preco" />
+			<ValidationMessage For="(() =>Produto.Nome)" />
+		</div>
+		<label>Descrição:</label>
+		<div>
+			<InputText class="form-control" @bind-Value="@Produto.Descricao" />
+			<ValidationMessage For="(() =>Produto.Nome)" />
+		</div>
+		   <label>Categoria:</label>
+		<div>
+			<select name="cat" id="cat" @bind="Produto.CategoriaId">
+				@if (Categorias is not null)
+				{
+					@if (Categorias.Count > 0)
+					{
+						foreach (Categoria item_context in Categorias)
+						{
+							<option value="@item_context.Id">@item_context.Nome</option>
+						}
+					}
+
+				}
+			</select>
+		</div>
+	</div>
+	
+	<button class="btn btn-success" type="submit">Salvar</button>
+</EditForm>
+
+
+@code {
+	[Parameter] public Produto Produto { get; set; }
+	[Parameter] public EventCallback OnValidSubmit { get; set; }
+	[Parameter] public List<Categoria> Categorias { get; set; }
+
+}
+
+

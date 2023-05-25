@@ -1,0 +1,13 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=191.8.164.157:7777;Database=blazormovies;user=root;Password==Cbmjj98#$"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}

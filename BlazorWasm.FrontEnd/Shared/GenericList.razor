@@ -1,0 +1,53 @@
+﻿@typeparam TItem
+
+@if (List is null)
+{
+    if (NullTemplate is not null)
+    {
+        <h5>Carregando...</h5>
+        @NullTemplate;
+    }
+    else
+    {
+          <h5>Carregando...</h5>
+        <img src="https://media.giphy.com/media/l0He4fJxPCbfqv7Xi/giphy.gif" />
+    }
+}
+else if (List.Count == 0)
+{
+
+    if (EmptyTemplate is not null)
+    {
+        <h5>Ainda não foram adicionados itens a está Coleção</h5>
+        @EmptyTemplate;
+    }
+    else
+    {
+         <h5>Ainda não foram adicionados itens a está Coleção</h5>
+        <img src="https://media.giphy.com/media/l0He4fJxPCbfqv7Xi/giphy.gif" />
+    }
+
+}
+else
+{
+    
+    @if (ElementTemplate is not null)
+    {
+        @foreach (var element in List)
+        {
+            @ElementTemplate(element);
+        }
+    }
+    else
+        @TemplateListaCompleta
+
+}
+
+@code {
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+    [Parameter] public RenderFragment<TItem> ElementTemplate { get; set; }
+    [Parameter] public RenderFragment TemplateListaCompleta { get; set; }
+    [Parameter] public List<TItem> List { get; set; }
+
+}

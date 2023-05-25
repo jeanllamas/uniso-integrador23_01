@@ -1,0 +1,44 @@
+﻿@if (Produtos is null)
+{
+    if (NullTemplate is not null)
+    {
+        @NullTemplate;
+    }
+    else
+    {
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Floading&psig=AOvVaw1VPHLanG7gyu7MqNyS39G1&ust=1607623866183000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNChy96_we0CFQAAAAAdAAAAABAD" />
+    }
+}
+else if (Produtos.Count == 0)
+{
+    if (EmptyTemplate is not null)
+    {
+        @EmptyTemplate;
+    }
+    else
+    {
+        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fgiphy.com%2Fexplore%2Floading&psig=AOvVaw1VPHLanG7gyu7MqNyS39G1&ust=1607623866183000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNChy96_we0CFQAAAAAdAAAAABAD" />
+    }
+}
+else
+{
+    @for (int i = 0; i < Produtos.Count; i++)
+    {
+
+        <div style="background-color: @(i % 2 == 0 ? "red" : "blue")">
+            <p> @Produtos[i].Nome </p>
+            <p> @Produtos[i].Preco </p>
+           
+        </div>
+    }
+}
+
+@code
+{
+    [Parameter] public List<Produto> Produtos { get; set; }
+    [Parameter] public RenderFragment NullTemplate { get; set; }
+    [Parameter] public RenderFragment EmptyTemplate { get; set; }
+
+
+
+}

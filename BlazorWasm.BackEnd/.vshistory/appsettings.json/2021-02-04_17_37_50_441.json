@@ -1,0 +1,15 @@
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "Server=191.8.164.157:7777;Database=blazormovies;user=root;Password==Cbmjj98#$",
+    "LocalConnection": "Server=127.0.0.1:3306;Database=blazormovies;user=root;Password==cbmqweasd9j21"
+
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning",
+      "Microsoft.Hosting.Lifetime": "Information"
+    }
+  },
+  "AllowedHosts": "*"
+}

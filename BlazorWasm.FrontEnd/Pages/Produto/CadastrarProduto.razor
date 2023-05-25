@@ -1,0 +1,35 @@
+﻿@page "/produto/cadastro"
+@inject IRepository<Produto> repository
+@inject IRepository<Categoria> repositoryCategoria
+@inject NavigationManager navigationManager
+
+
+<h3>Cadastrar Produto</h3>
+@if (_categorias is not null)
+{
+	<FormProduto Produto="produto" OnValidSubmit="Create" Categorias="_categorias" />
+}
+
+
+@code {
+	private Produto produto = new Produto();
+	private List<Categoria> _categorias;
+
+	protected override async Task OnInitializedAsync()
+	{
+		_categorias = await repositoryCategoria.Get();
+	}
+
+	private async Task Create()
+	{
+		try
+		{
+			await repository.Add(produto);
+			navigationManager.NavigateTo("produto");
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("Error: " + ex.Message);
+		}
+	}
+}

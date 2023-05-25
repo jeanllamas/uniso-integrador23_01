@@ -1,0 +1,59 @@
+﻿@page "/produto"
+@inject IRepository<Produto> repository
+
+<h3>Index Produto</h3>
+
+<div class="form-group">
+    <a class="btn btn-info" href="produto/cadastro"> Cadastrar Produto</a>
+</div>
+
+@if(Produtos is not null)
+{
+    <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Produtos)
+                {
+                    <tr>
+                        <td>
+                            <a class="btn btn-success" href="/produto/editar/@item.Id">Editar</a>
+                            <button class="btn btn-danger" @onclick="@(() => DeletarItem(item.Id))">Deletar</button>
+                        </td>
+                        <td>@item.Nome</td>
+                    </tr>
+                }
+            </tbody>
+    </table>
+}
+else
+{
+       <h5>Carregando...</h5>
+        <img src="https://media.giphy.com/media/l0He4fJxPCbfqv7Xi/giphy.gif" />
+}
+
+        
+
+
+@code {
+
+    List<Produto> Produtos = new List<Produto>();
+
+    protected override async Task OnInitializedAsync()
+    {
+            Produtos= await repository.Get();
+    }
+
+
+
+    private async Task DeletarItem(int Id)
+    {
+         await repository.Delete(Id);
+         Produtos = await repository.Get();
+    }
+
+}

@@ -1,0 +1,18 @@
+﻿@page "/categoria/cadastro"
+@inject IRepository<Categoria> repository
+@inject NavigationManager navigationManager
+
+<h3>Cadastro Categoria</h3>
+
+<FormCategoria Categoria="categoria" OnValidSubmit="Create" />
+
+@code {
+    private Categoria categoria = new Categoria();
+
+    private async Task Create()
+    {
+            await repository.Add(categoria);
+
+            navigationManager.NavigateTo("categoria");  
+    }
+}

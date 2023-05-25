@@ -1,0 +1,39 @@
+﻿@page "/produto/editar/{ProdutoId:int}"
+@inject IRepository<Produto> repository
+@inject IRepository<Categoria> repositoryCategoria
+@inject NavigationManager navigationManager
+
+
+<h3>Cadastrar Produto</h3>
+@if(_categorias is not null)
+{
+	<FormProduto Produto="produto" OnValidSubmit="Edit" Categorias="_categorias" />
+}
+
+
+@code {
+	[Parameter] public int ProdutoId { get; set; }
+	private Produto produto = new Produto();
+	private List<Categoria> _categorias;
+
+	protected override async Task OnInitializedAsync()
+	{
+		try
+		{
+			var resp = await repository.Get(ProdutoId);
+			produto = resp;
+			_categorias = await repositoryCategoria.Get();
+		}
+		catch (Exception ex)
+		{
+			Console.WriteLine("Erro Ao Editar Produto: " + ex.Message);
+
+		}
+	}
+
+	private async Task Edit()
+	{
+		await repository.Update(produto);
+		navigationManager.NavigateTo("produto");
+	}
+}
