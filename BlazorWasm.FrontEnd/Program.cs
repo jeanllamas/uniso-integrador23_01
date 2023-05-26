@@ -25,6 +25,7 @@ namespace BlazorWasm.Client
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
             //Configuracao Manual de Servicos
             ConfigureServices(builder.Services);
+            builder.Services.AddScoped<AuthService>();
             await builder.Build().RunAsync();
         }
 

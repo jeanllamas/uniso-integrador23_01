@@ -1,8 +1,9 @@
 ﻿@page "/petshow"
 @layout BlankLayout
 @inject IRepository<Cliente> repository
+@inject NavigationManager navigationManager
+@inject AuthService authService
 @using System.Security.Claims
-@inject IJSRuntime JSRuntime
 
 <!doctype html>
 <html lang="pt">
@@ -32,12 +33,19 @@
             <NavLink class="nav-link" href="petshow/login">
                 <button class="botao">Entrar</button>
             </NavLink>
+            <NavLink class="nav-link" @onclick="FazerLogout">
+                <button class="botao">Sair</button>
+            </NavLink>
         </div>
     </header>
 
     <div class="banner-section">
         <h1>Bem-vindo à PetShow</h1>
         <p>A melhor loja para animais de estimação</p>
+        @if (!string.IsNullOrEmpty(authService.Nome) && !string.IsNullOrEmpty(authService.Sobrenome))
+        {
+            <p>Olá, @authService.Nome @authService.Sobrenome!</p>
+        }
         <a href="#" class="botao">Conheça nossa loja</a>
     </div>
 
@@ -161,4 +169,9 @@
 </html>
 
 @code {
+    private void FazerLogout()
+    {
+        authService.Logout();
+        navigationManager.NavigateTo("/petshow/");
+    }
 }

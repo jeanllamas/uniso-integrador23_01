@@ -2,6 +2,7 @@
 @layout BlankLayout
 @inject IRepository<Cliente> repository
 @inject NavigationManager navigationManager
+@inject AuthService authService
 @using BlazorWasm.FrontEnd.Repositorio
 
 <!DOCTYPE html>
@@ -65,6 +66,8 @@
 
         if (cliente != null && cliente.Senha == senha)
         {
+            authService.Nome = cliente.Nome;
+            authService.Sobrenome = cliente.Sobrenome;
             // Autenticação bem-sucedida, redireciona para a página principal
             navigationManager.NavigateTo("/petshow/");
             loginValido = true;
