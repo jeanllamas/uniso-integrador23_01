@@ -36,6 +36,7 @@ namespace BlazorWasm.Client
             //ATivar Repositorio Verdadeiro (no SGBD)
             services.AddTransient<IRepository<Categoria>, CategoriaRepository>();
             services.AddTransient<IRepository<Produto>, ProdutoRepository>();
+            services.AddTransient<IRepository<Cliente>, ClienteRepository>();
 
             //ATIVAR Repositorio em Memoria (Fake)
             //services.AddSingleton<IRepository<Categoria>, RepositoryInMemoryCategoria>();

@@ -13,41 +13,41 @@ namespace BlazorWasmServer.Server.Controllers
     [ApiController]
 
     [Route("api/[controller]")]
-    public class CategoriaController : ControllerBase 
+    public class ClienteController : ControllerBase 
     {
         private readonly ApplicationDbContext context;
-        public CategoriaController(ApplicationDbContext context)
+        public ClienteController(ApplicationDbContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Categoria>>> Get()
+        public async Task<ActionResult<List<Cliente>>> Get()
         {
-            return await context.Categorias.ToListAsync();
+            return await context.Clientes.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Categoria>> Get(int id)
+        public async Task<ActionResult<Cliente>> Get(int id)
         {
-            var resp =await context.Categorias.FirstOrDefaultAsync(x => x.Id == id);
+            var resp =await context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
             if (resp == null) { return NotFound(); }
             return resp;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Categoria categoria)
+        public async Task<ActionResult<int>> Post(Cliente cliente)
         {
-            context.Categorias.Add(categoria);
+            context.Clientes.Add(cliente);
             await context.SaveChangesAsync();
-            return categoria.Id;
+            return cliente.Id;
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(Categoria categoria)
+        public async Task<ActionResult> Put(Cliente cliente)
         {
-            context.Attach(categoria).State = EntityState.Modified;
+            context.Attach(cliente).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return NoContent();
         }
@@ -55,13 +55,13 @@ namespace BlazorWasmServer.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var categoria = await context.Categorias.FirstOrDefaultAsync(x => x.Id == id);
-            if (categoria == null)
+            var cliente = await context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
+            if (cliente == null)
             {
                 return NotFound();
             }
 
-            context.Remove(categoria);
+            context.Remove(cliente);
             await context.SaveChangesAsync();
             return NoContent();
         }

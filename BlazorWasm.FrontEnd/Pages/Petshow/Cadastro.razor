@@ -1,5 +1,11 @@
 ﻿@page "/petshow/cadastro"
 @layout BlankLayout
+@inject IRepository<Cliente> repository
+@inject NavigationManager navigationManager
+@using System.Net.Http
+@using System.Text.Json
+@using System.Text
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,13 +57,56 @@
                 </label>
             </div>
             <div class="grid text-center">
-                <button type="button" class="btn btn-primary btn-lg" id="cadastroBtn" disabled>Cadastrar</button>
+                <button type="button" class="btn btn-primary btn-lg" id="cadastroBtn" disabled @onclick="EnviarCadastro">Cadastrar</button>
             </div>
+
+            @if (cadastroRealizado)
+            {
+                <div class="alert alert-success">@mensagemCadastro</div>
+            }
+            else if (!string.IsNullOrEmpty(mensagemCadastro))
+            {
+                <div class="alert alert-danger">@mensagemCadastro</div>
+            }
         </form>
     </div>
 </body>
 
 </html>
-@code {
 
+@code{
+    public class ClienteDto
+    {
+        public string Nome { get; set; }
+        public string Sobrenome { get; set; }
+        public string Email { get; set; }
+        public string Senha { get; set; }
+    }
+
+    private ClienteDto clienteDto = new ClienteDto();
+    private bool cadastroRealizado;
+    private string mensagemCadastro;
+
+    private async Task EnviarCadastro()
+    {
+        var cliente = new Cliente
+            {
+                Nome = clienteDto.Nome,
+                Sobrenome = clienteDto.Sobrenome,
+                Email = clienteDto.Email,
+                Senha = clienteDto.Senha
+            };
+
+        try
+        {
+            await repository.Add(cliente);
+            cadastroRealizado = true;
+            mensagemCadastro = "Cadastro realizado com sucesso!";
+        }
+        catch (Exception ex)
+        {
+            mensagemCadastro = "Ocorreu um erro ao realizar o cadastro: " + ex.Message;
+        }
+    }
 }
+

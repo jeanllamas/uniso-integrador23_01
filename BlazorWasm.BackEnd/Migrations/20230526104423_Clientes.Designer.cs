@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BlazorWasm.BackEnd.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230525102555_Clientes")]
+    [Migration("20230526104423_Clientes")]
     partial class Clientes
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

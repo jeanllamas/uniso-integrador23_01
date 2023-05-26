@@ -13,39 +13,39 @@ namespace BlazorWasmServer.Server.Controllers
     [ApiController]
 
     [Route("api/[controller]")]
-    public class ClienteController : ControllerBase 
+    public class CategoriaController : ControllerBase 
     {
         private readonly ApplicationDbContext context;
-        public ClienteController(ApplicationDbContext context)
+        public CategoriaController(ApplicationDbContext context)
         {
             this.context = context;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Cliente>>> Get()
+        public async Task<ActionResult<List<Categoria>>> Get()
         {
-            return await context.Clientes.ToListAsync();
+            return await context.Categorias.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Cliente>> Get(int id)
+        public async Task<ActionResult<Categoria>> Get(int id)
         {
-            var resp =await context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
+            var resp =await context.Categorias.FirstOrDefaultAsync(x => x.Id == id);
             if (resp == null) { return NotFound(); }
             return resp;
         }
 
 
         [HttpPost]
-        public async Task<ActionResult<int>> Post(Cliente categoria)
+        public async Task<ActionResult<int>> Post(Categoria categoria)
         {
-            context.Clientes.Add(categoria);
+            context.Categorias.Add(categoria);
             await context.SaveChangesAsync();
             return categoria.Id;
         }
 
         [HttpPut]
-        public async Task<ActionResult> Put(Cliente categoria)
+        public async Task<ActionResult> Put(Categoria categoria)
         {
             context.Attach(categoria).State = EntityState.Modified;
             await context.SaveChangesAsync();
@@ -55,7 +55,7 @@ namespace BlazorWasmServer.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var categoria = await context.Clientes.FirstOrDefaultAsync(x => x.Id == id);
+            var categoria = await context.Categorias.FirstOrDefaultAsync(x => x.Id == id);
             if (categoria == null)
             {
                 return NotFound();
