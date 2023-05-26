@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using BlazorWasm.Compartilhado.Entidades;
 
 namespace BlazorWasm.FrontEnd.Repositorio
 {
@@ -12,6 +13,6 @@ namespace BlazorWasm.FrontEnd.Repositorio
             Task<List<T>> Get();
             Task<T> Get(int id);
             Task Update(T item);
-        }
+    }
     
 }

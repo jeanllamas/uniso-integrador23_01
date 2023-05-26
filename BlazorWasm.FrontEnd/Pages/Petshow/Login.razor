@@ -1,5 +1,9 @@
 ﻿@page "/petshow/login"
 @layout BlankLayout
+@inject IRepository<Cliente> repository
+@inject NavigationManager navigationManager
+@using BlazorWasm.FrontEnd.Repositorio
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,25 +24,56 @@
         <form>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">E-mail</label>
-                <input type="email" class="form-control" id="email">
+                <input type="email" class="form-control" id="email" @bind="@email">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Senha</label>
-                <input type="password" class="form-control" id="senha">
+                <input type="password" class="form-control" id="senha" @bind="@senha">
             </div>
             <div class="mb-3 form-check">
                 <input class="form-check-input" type="checkbox" onclick="mostrarSenha()">
                 <label class="form-check-label" for="exampleCheck1">Mostrar senha</label>
             </div>
             <div class="grid text-center">
-                <button type="button" class="btn btn-primary btn-lg">Entrar</button>
+                <button type="button" class="btn btn-primary btn-lg" @onclick="RealizarLogin">Entrar</button>
             </div>
         </form>
+        @if (loginValido)
+        {
+            <p>Login válido!</p>
+        }
+        else if (!string.IsNullOrEmpty(mensagemErro))
+        {
+            <p>@mensagemErro</p>
+        }
     </div>
 </body>
 
 </html>
 
 @code {
+    private string email;
+    private string senha;
 
+    private bool loginValido;
+    private string mensagemErro;
+
+    private async Task RealizarLogin()
+    {
+        // Consulta o banco de dados para verificar as credenciais
+        var cliente = await repository.GetByEmail(email);
+
+        if (cliente != null && cliente.Senha == senha)
+        {
+            // Autenticação bem-sucedida, redireciona para a página principal
+            navigationManager.NavigateTo("/petshow/");
+            loginValido = true;
+        }
+        else
+        {
+            // Credenciais inválidas, exibe mensagem de erro
+            mensagemErro = "Credenciais inválidas";
+            loginValido = false;
+        }
+    }
 }

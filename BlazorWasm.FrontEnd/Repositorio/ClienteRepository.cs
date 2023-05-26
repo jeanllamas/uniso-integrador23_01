@@ -2,6 +2,7 @@
 using BlazorWasm.FrontEnd.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BlazorWasm.FrontEnd.Repositorio
@@ -75,6 +76,11 @@ namespace BlazorWasm.FrontEnd.Repositorio
             }
         }
 
+        public async Task<Cliente> GetByEmail(string email)
+        {
+            var clientes = await Get();
+            return clientes.FirstOrDefault(c => c.Email == email);
+        }
 
     }
 }

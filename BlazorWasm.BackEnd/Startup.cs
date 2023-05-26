@@ -79,6 +79,16 @@ namespace BlazorWasmServer.Server
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Blazor.Server", Version = "v1" });
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy", builder =>
+                {
+                    builder.WithOrigins("https://localhost:44387") // Adicione o domínio do seu aplicativo aqui
+                           .AllowAnyMethod()
+                           .AllowAnyHeader()
+                           .AllowCredentials();
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -103,7 +113,7 @@ namespace BlazorWasmServer.Server
             // app.UseAuthorization();
             app.UseBlazorFrameworkFiles(); //WebAssembly add
             app.UseStaticFiles();
-
+            app.UseCors("CorsPolicy");
 
             app.UseEndpoints(endpoints =>
             {
