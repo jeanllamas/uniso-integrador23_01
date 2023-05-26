@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Pages\Petshow\Cadastro.razor.css" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Bogus" Version="34.0.2" />
     <PackageReference Include="Markdig" Version="0.30.3" />
     <PackageReference Include="MathNet.Numerics" Version="5.0.0" />
@@ -133,10 +129,6 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Shared\InputImg.razor" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Pages\Petshow\Cadastro.razor.css" />
   </ItemGroup>
 
   <ItemGroup>

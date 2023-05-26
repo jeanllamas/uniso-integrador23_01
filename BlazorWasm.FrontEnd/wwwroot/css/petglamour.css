@@ -1,4 +1,8 @@
-﻿header {
+﻿* {
+    font-family: "Montserrat", sans-serif;
+}
+
+header {
     max-width: 1280px;
     margin: 0 auto;
     display: flex;
@@ -25,7 +29,6 @@ nav li {
 }
 
 nav a {
-    font-family: 'Arial', sans-serif;
     color: black;
     text-decoration: none;
     font-weight: 500;
@@ -41,15 +44,16 @@ nav a {
 }
 
 .logo {
+    cursor: default;
     display: flex;
     font-size: 36px;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Pacifico', cursive;
     font-weight: 800;
     color: orange;
 }
 
 .banner-section {
-    background-image: url("https://img.freepik.com/free-photo/beautiful-pet-portrait-dog_23-2149218450.jpg?t=st=1684435208~exp=1684435808~hmac=569259be7889867cf4f60119aa47f6799981e82888b19447afe981ab7048eabe");
+    background-image: url("https://images.unsplash.com/photo-1548199973-03cce0bbc87b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1169&q=80");
     height: 100vh;
     font-weight: 500px;
     background-size: cover;
@@ -63,37 +67,31 @@ nav a {
 }
 
     .banner-section h1 {
-        font-family: 'Arial', sans-serif;
         color: black;
-        font-size: 42px;
+        font-size: 52px;
         color: white;
         background: orange;
         padding: 0px 15px;
         font-weight: 800;
+        cursor: default;
     }
 
     .banner-section p {
-        font-family: 'Arial', sans-serif;
-        font-size: 22px;
-        font-weight: 500;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        font-size: 24px;
+        font-weight: 600;
+        padding-top: 5px;
         margin-bottom: 40px;
+        cursor: default;
     }
 
     .banner-section a {
-        font-family: 'Arial', sans-serif;
+        font-size: 18px;
         text-decoration: none;
         font-weight: 600;
-        background-color: black;
-        color: #fff;
-        border-radius: 30px;
-        padding: 10px 35px;
     }
 
-        .banner-section a:hover {
-            background: orange;
-        }
-
-.title {
+#title {
     margin-top: 15px;
     padding: 30px 0px 30px 0px;
     color: white;
@@ -101,7 +99,23 @@ nav a {
     text-align: center;
 }
 
-    .title h1 {
+    #title h1 {
+        font-weight: 700;
+        cursor: default;
+    }
+
+#phase {
+    margin: 70px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+    #phase:hover {
+        transform: scale(1.2);
+    }
+
+    #phase h1 {
+        cursor: default;
         font-weight: 700;
     }
 
@@ -117,7 +131,7 @@ nav a {
     text-align: center;
     margin: 15px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
 
     .column img {
@@ -126,8 +140,10 @@ nav a {
         width: 100%;
     }
 
-    .column h3 {
-        padding: 5px 0px 5px 0px;
+    .column h4 {
+        font-family: "Arial" sans-serif;
+        font-weight: 600;
+        padding: 10px 0px 10px 0px;
         color: white;
         background: orange;
         margin-top: 15px;
@@ -135,15 +151,17 @@ nav a {
 
     .column p {
         height: 50px;
-        padding: 0px 15px 0 15px;
+        padding: 0px 20px 0 20px;
     }
 
 .botao {
+    transition: transform 0.3s ease-in-out;
     background-color: rgb(5, 153, 252);
     border: none;
 }
 
     .botao:hover {
+        transform: scale(1.2);
         background-color: rgb(5, 83, 252);
     }
 
@@ -154,12 +172,6 @@ nav a {
     display: flex;
     margin-top: 30px;
     justify-content: center;
-}
-
-#title h1 {
-    font-weight: 700;
-    text-align: center;
-    padding: 60px;
 }
 
 #footer {
@@ -176,21 +188,25 @@ nav a {
     text-align: center;
 }
 
-    .column2 h3 {
-        padding-bottom: 10px;
+    .column2 h4 {
+        padding-bottom: 20px;
         color: white;
     }
 
     .column2 img {
+        transition: transform 0.3s ease-in-out;
         object-fit: cover;
         height: 50px;
-        width: 100%;
-        margin: 0px 10px 0px 10px;
+        width: 50px;
+        margin: 0px 8px 0px 8px;
     }
+
+        .column2 img:hover {
+            transform: scale(1.2);
+        }
 
     .column2 p {
         color: white;
-        ;
     }
 
 #sectionsobre {
@@ -206,6 +222,7 @@ nav a {
 }
 
     .columnsobre h2 {
+        font-family: "Montserrat", sans-serif;
         color: orange;
         font-weight: 700;
     }
@@ -224,3 +241,50 @@ nav a {
         object-fit: cover;
         width: 100%;
     }
+
+.animated {
+    background-color: rgba(0, 0, 0, 0.212);
+    border: 6px solid;
+    border-color: white;
+    width: 270px;
+    padding: 15px 0px 15px 0px;
+    color: #fff;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+}
+
+    .animated:before {
+        content: '';
+        background: linear-gradient(20deg, #fffb00, #ffc400, #00ffd5, #006eff, #0026ff);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 600%;
+        z-index: -1;
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 12s linear infinite;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        border-radius: 6px;
+    }
+
+    .animated:hover:before {
+        opacity: 2;
+    }
+
+@keyframes glowing {
+    0% {
+        background-position: 0 0;
+    }
+
+    50% {
+        background-position: 100% 0;
+    }
+
+    100% {
+        background-position: 0 0;
+    }
+}

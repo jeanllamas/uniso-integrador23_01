@@ -1,4 +1,4 @@
-﻿@page "/petshow/cadastro"
+﻿@page "/petglamour/cadastro"
 @layout BlankLayout
 @inject IRepository<Cliente> repository
 @inject NavigationManager navigationManager
@@ -67,7 +67,7 @@
             <div class="mb-3 form-check">
                 <input class="form-check-input" type="checkbox" id="termosCheck" onclick="termos()">
                 <label class="form-check-label" for="termosCheck">
-                    Eu li e concordo com os <a href="petshow/termos" target="_blank">Termos e Condições de Uso</a>
+                    Eu li e concordo com os <a href="petglamour/termos" target="_blank">Termos e Condições de Uso</a>
                 </label>
             </div>
             <div class="grid text-center">
@@ -78,7 +78,7 @@
             @if (cadastroRealizado)
             {
                 <p>@mensagemCadastro</p>
-                navigationManager.NavigateTo("/petshow/login");
+                navigationManager.NavigateTo("/petglamour/login");
             }
         </div>
     </form>

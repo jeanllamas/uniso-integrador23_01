@@ -1,0 +1,202 @@
+﻿@page "/petglamour"
+@layout BlankLayout
+@inject IRepository<Cliente> repository
+@inject NavigationManager navigationManager
+@inject AuthService authService
+@using System.Security.Claims
+
+<!doctype html>
+<html lang="pt">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PetGlamour</title>
+  <link rel="stylesheet" href="css/petglamour.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <link
+    herf="https://fonts.google.com/specimen/Pacifico?preview.text=PetGlamour&preview.text_type=custom&category=Handwriting"
+    rel=" stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <div class="logo">PetGlamour</div>
+    <div class="nav-container">
+      <nav>
+        <ul>
+          <li><a href="/petglamour">Home</a></li>
+          <li><a href="#sectionsobre">Sobre nós</a></li>
+          <li><a href="#title">Serviços</a></li>
+        </ul>
+      </nav>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+       <NavLink class="nav-link" href="petglamour/cadastro">
+            <button class="botao">Cadastrar</button>
+       </NavLink>
+       <NavLink class="nav-link" href="petglamour/login">
+            <button class="botao">Entrar</button>
+       </NavLink>
+       <NavLink class="nav-link" @onclick="FazerLogout">
+            <button class="botao">Sair</button>
+       </NavLink>
+    </div>
+  </header>
+
+  <div class="banner-section">
+    <h1>Bem-vindo à PetGlamour</h1>
+    <p>O cuidado e carinho que seu pet merece!</p>
+    @if (!string.IsNullOrEmpty(authService.Nome) && !string.IsNullOrEmpty(authService.Sobrenome))
+    {
+        <p>Olá, @authService.Nome @authService.Sobrenome!</p>
+    }
+    <a href="https://goo.gl/maps/8EvtV1STy9MHWfUb7" class="animated">CONHEÇA NOSSA LOJA</a>
+  </div>
+
+  <section id="sectionsobre">
+    <div class="columnsobre">
+      <h2>Sobre Nós</h2>
+      <h4>O melhor lugar para o seu pet!</h4>
+      <p>Nós somos uma estética dedicada a cuidar e atender todas as necessidades dos seus amados animais de estimação.
+        Com uma equipe apaixonada por animais e vasta experiência no setor, nos esforçamos para oferecer os melhores
+        serviços e produtos para seus companheiros peludos.<br><br>Na nossa petshop, entendemos que cada animal é único
+        e merece tratamento especial. Nosso objetivo é proporcionar um ambiente amigável e acolhedor para você e seus
+        animais de estimação, onde você pode encontrar tudo o que precisa em um só lugar.</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Saiba mais</button>
+    </div>
+    <div class="columnsobre">
+      <img
+        src="https://img.freepik.com/fotos-gratis/cachorro-fofo-na-loja-de-animais-com-o-dono_23-2148872568.jpg?w=1380&t=st=1684869518~exp=1684870118~hmac=3d9af5b83708bb1a888a2066b336e0f05bff4d96255d2bf9ae9495d1cefaae2e"
+        alt="Sobre">
+    </div>
+  </section>
+
+  <div id="title">
+    <h1>SERVIÇOS</h1>
+  </div>
+
+  <section id="section1">
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/beautiful-pet-portrait-small-dog-with-bubbles_23-2149218434.jpg?w=1060&t=st=1684434765~exp=1684435365~hmac=54caa8f0b4074938f1e0f72e253eb0d4594638dea3c58bf33b3d3da4eb3bdfc0"
+        alt="Imagem 1">
+      <h4>Banho</h4>
+      <p>Limpeza e cuidado para seu pet.</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/beautiful-pet-portrait-dog_23-2149218454.jpg?t=st=1684434897~exp=1684435497~hmac=a211ae3aec80dfa3e94cab48e4e90dc933f74b5383826da1e42ab51c18205332"
+        alt="Imagem 2">
+      <h4>Tosa</h4>
+      <p>Estilização profissional para seu animal.</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/washing-process-small-dog-sits-table-dog-spaying-by-professional_1157-48817.jpg?t=st=1684434980~exp=1684435580~hmac=524d7497e38f859f05ea0d6806524b5d27affc78ff1e517425004c8534fff7ec"
+        alt="Imagem 3">
+      <h4>Limpeza de ouvidos</h4>
+      <p>Cuidado com a saúde auricular.</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/close-up-veterinarian-taking-care-dog_23-2149100178.jpg?t=st=1684435044~exp=1684435644~hmac=752183c03e0c5de7f0731d9d28f97d257a0b988ea8880e62fa71358735e90046"
+        alt="Imagem 4">
+      <h4>Tratamentos</h4>
+      <p>Opções para necessidades específicas.</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+  </section>
+
+  <section id="section2">
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/haircuting-process-small-dog-sits-table-dog-with-professional_1157-48813.jpg?w=1060&t=st=1684435558~exp=1684436158~hmac=7cc5a9164745cd4aa052185faf937e3ff2e2cfc5ad68437e548259cf184327cc"
+        alt="Imagem 5">
+      <h4>Grooming</h4>
+      <p>Estética e cuidados com o visual</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/brushing-teeth-process-small-dog-sits-table-dog-brushed-by-professional_1157-48823.jpg?w=1060&t=st=1684435859~exp=1684436459~hmac=6304c3b01ecc2b0fbf70f881e6f9f318a2d7b695ec25cda1f57abb918596ec52"
+        alt="Imagem 6">
+      <h4>Escovação</h4>
+      <p>Pelos macios e desembaraçados</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/young-woman-taking-bath-with-her-favorite-dog-world-dog-love-day-concept_1150-46853.jpg?w=1060&t=st=1684968470~exp=1684969070~hmac=274790a0b288d13e23a1586025831c10797c11b0127e8521685a9640203812bc"
+        alt="Imagem 7">
+      <h4>Hidratação</h4>
+      <p>Pele e pelos saudáveis e hidratados</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+    <div class="column">
+      <img
+        src="https://img.freepik.com/free-photo/top-view-active-small-puppy-playing-with-caucasian-woman-while-lying-bed-playful-pet-owner-scratching-belly-her-excited-shih-tzu-dog_662251-2268.jpg?w=1060&t=st=1684436423~exp=1684437023~hmac=65b379ea691bdbbd091d749fad9e6e576b3827414f83546804c664982ddf2718"
+        alt="Imagem 8">
+      <h4>Massagem</h4>
+      <p>Relaxamento e alívio do corpo e mente</p>
+      <button class="botao" onclick="window.location.href = 'https://www.whatsapp.com/';">Entre em contato</button>
+    </div>
+
+  </section>
+
+  <section id="phase">
+    <h1>A MELHOR ESTÉTICA PET DA REGIÃO</h1>
+  </section>
+
+  <footer id="footer">
+
+    <div class="column2">
+      <div class="logo">PetGlamour</div>
+      <p>&copy;2023 PetGlamour. Todos os direitos reservados.</p>
+            <p></p>
+    </div>
+
+    <div class="column2">
+      <h4>Contato</h4>
+      <p>(15) 92882-2919</p>
+      <p>(15) 3341-1203</p>
+    </div>
+
+    <div class="column2">
+      <h4>Endereço</h4>
+      <p>Rua:Imaginária<br>Bairro:sonhos<br>CEP: 1092-292 </p>
+    </div>
+
+    <div class="column2">
+      <h4>Redes Sociais</h4>
+      <a href="https://www.facebook.com/" target="_blank">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/733/733547.png?w=826&t=st=1684949968~exp=1684950568~hmac=f1290786ef4d48242bf58e890eff946cba87502cf160836f2fd66538dec67f4e"
+          alt="Facebook">
+      </a>
+      <a href="https://www.instagram.com/" target="_blank">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/270/270804.png?w=826&t=st=1684950078~exp=1684950678~hmac=a02d4a0daba484f37d1a9bb81883a0e57dd506a92cd67fbf1f820c3b6a6b307a"
+          alt="Instagram">
+      </a>
+      <a href="https://www.whatsapp.com/" target="_blank">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/733/733585.png?w=826&t=st=1684950166~exp=1684950766~hmac=47a547f1a1784df2bbd4c68bc77ff2ba7c4a7cf089c1518d355dc0b6bc816fd1"
+          alt="Instagram">
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
+
+@code {
+    private void FazerLogout()
+    {
+        authService.Logout();
+        navigationManager.NavigateTo("/petglamour/");
+    }
+}
